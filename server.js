@@ -27,9 +27,11 @@ app.use(express.json());
 
 // Controllers
 const usersController = require("./controllers/user");
-const dogsController = require("./controllers/dog")
+const dogsController = require("./controllers/dog");
+const likeEventsController = require("./controllers/likeEvent")
 app.use("/users", usersController)
 app.use("/dogs", dogsController)
+app.use("/likeevents", likeEventsController)
 
 app.listen(PORT, () => {
   console.log("Matching happening on port", PORT);
