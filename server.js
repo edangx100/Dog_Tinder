@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -24,6 +24,12 @@ mongoose.connection.once("open", () => {
 
 // Middleware
 app.use(express.json());
+
+// Controllers
+const usersController = require("./controllers/user");
+const dogsController = require("./controllers/dog")
+app.use("/users", usersController)
+app.use("/dogs", dogsController)
 
 app.listen(PORT, () => {
   console.log("Matching happening on port", PORT);
