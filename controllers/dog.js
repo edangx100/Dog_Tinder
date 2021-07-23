@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
 });
 
 router.get("/seed", (req, res) => {
-  Dog.remove({}, (error, products) => {
+  Dog.remove({}, (error, dogs) => {
     Dog.create([{
       "name": "Kai Kai",
       "breed": "Pomeranian",

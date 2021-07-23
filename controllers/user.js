@@ -20,4 +20,47 @@ router.get("/", (req, res) => {
     });
   });
 
+  
+router.get("/seed", (req, res) => {
+  User.remove({}, (error, users) => {
+    User.create([{
+      "username": "jerk13",
+      "password": "12345",
+      "email": "jerk@gmail.com",
+      "firstName": "Jerrick",
+      "lastName": "What",
+      "location": "N",
+      "type": "user",
+      "description": "looking for some mate for my doge",
+      "dog": "60fac0f512cc4a0015da2b4e",
+    },
+    {
+      "username": "slyguy",
+      "password": "12345",
+      "email": "slyguy@aol.com",
+      "firstName": "Sylvester",
+      "lastName": "What",
+      "location": "W",
+      "type": "user",
+      "description": "doge please",
+      "dog": "60fac0f512cc4a0015da2b4f",
+    },
+    {
+      "username": "joyboy",
+      "password": "12345",
+      "email": "email@email.com",
+      "firstName": "Jay",
+      "lastName": "What",
+      "location": "C",
+      "type": "user",
+      "description": "where is a good place for dog",
+      "dog": "60fac0f512cc4a0015da2b50",
+    }
+    ], (err, data) => {
+      res.redirect("/");
+    });
+  });
+});
+
+
 module.exports = router
