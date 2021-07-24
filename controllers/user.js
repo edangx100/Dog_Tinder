@@ -57,7 +57,7 @@ router.get("/seed", (req, res) => {
       "dog": "60fac0f512cc4a0015da2b50",
     }
     ], (err, data) => {
-      res.redirect("/");
+      res.redirect("/users");
     });
   });
 });
