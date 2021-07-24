@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const User = require("../models/User")
 
+// INDEX
 router.get("/", (req, res) => {
     User.find({}, (err, foundUsers) => {
       if (err) {
@@ -11,17 +12,20 @@ router.get("/", (req, res) => {
     });
   });
 
-  router.post("/", (req, res) => {
-    User.create(req.body, (error, createdUser) => {
-      if (error) {
-        res.status(400).json({ error: error.message });
-      }
-      res.status(200).send(createdUser);
-    });
+// CREATE  
+router.post("/", (req, res) => {
+  User.create(req.body, (error, createdUser) => {
+    if (error) {
+      res.status(400).json({ error: error.message });
+    }
+    res.status(200).send(createdUser);
   });
+});
 
 
 // ========================== //
+// ========================== //
+// DELETE
 router.delete("/:id", (req, res) => {
   User.findByIdAndRemove(req.params.id, (err, deletedUser) => {
     if (err) {
@@ -32,6 +36,7 @@ router.delete("/:id", (req, res) => {
 });
 
 
+// UPDATE
 router.put("/:id", (req, res) => {
   User.findByIdAndUpdate(
     req.params.id,
@@ -45,6 +50,7 @@ router.put("/:id", (req, res) => {
     }
   );
 });
+// ========================== //
 // ========================== //
 
   

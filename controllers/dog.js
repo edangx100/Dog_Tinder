@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Dog = require("../models/Dog");
 
+// INDEX
 router.get("/", (req, res) => {
   Dog.find({}, (err, foundDogs) => {
     if (err) {
@@ -11,6 +12,7 @@ router.get("/", (req, res) => {
   });
 });
 
+// CREATE
 router.post("/", (req, res) => {
   Dog.create(req.body, (error, createdDog) => {
     if (error) {
@@ -22,6 +24,9 @@ router.post("/", (req, res) => {
 
 
 // ========================== //
+// ========================== //
+
+// DELETE
 router.delete("/:id", (req, res) => {
   Dog.findByIdAndRemove(req.params.id, (err, deletedDog) => {
     if (err) {
@@ -31,7 +36,7 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-
+// UPDATE
 router.put("/:id", (req, res) => {
   Dog.findByIdAndUpdate(
     req.params.id,
@@ -45,6 +50,19 @@ router.put("/:id", (req, res) => {
     }
   );
 });
+
+// SHOW
+router.get("/:name", (req, res) => {
+  Dog.find( 
+    { name: req.params.name },
+
+     (error, foundDogs) => {
+        console.log(foundDogs );
+        res.send( foundDogs );
+      } )
+});
+
+// ========================== //
 // ========================== //
 
 
