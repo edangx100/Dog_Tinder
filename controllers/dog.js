@@ -20,6 +20,7 @@ router.post("/", (req, res) => {
   });
 });
 
+
 // ========================== //
 router.delete("/:id", (req, res) => {
   Dog.findByIdAndRemove(req.params.id, (err, deletedDog) => {
@@ -29,7 +30,23 @@ router.delete("/:id", (req, res) => {
     res.status(200).json(deletedDog);
   });
 });
+
+
+router.put("/:id", (req, res) => {
+  Dog.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (err, updatedDog) => {
+      if (err) {
+        res.status(400).json({ error: err.message });
+      }
+      res.status(200).json(updatedDog);
+    }
+  );
+});
 // ========================== //
+
 
 
 router.get("/seed", (req, res) => {
